@@ -7,7 +7,7 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=tvheadend
+PKG_NAME:=tvheadend43
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
@@ -25,25 +25,25 @@ PKG_USE_MIPS16:=0
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
 
-define Package/tvheadend
+define Package/tvheadend43
   SECTION:=multimedia
   CATEGORY:=Multimedia
-  TITLE:=Tvheadend is a TV streaming server for Linux
-  DEPENDS:=@BUILD_NLS +libopenssl +librt +zlib +TVHEADEND_AVAHI_SUPPORT:libavahi-client $(ICONV_DEPENDS)
+  TITLE:=Tvheadend 4.3 is a TV streaming server for Linux
+  DEPENDS:=+libopenssl +librt +zlib +TVHEADEND_AVAHI_SUPPORT:libavahi-client $(ICONV_DEPENDS)
   URL:=https://tvheadend.org
   MAINTAINER:=Jan Čermák <jan.cermak@nic.cz>
 endef
 
-define Package/tvheadend/description
-  Tvheadend is a TV streaming server and recorder for Linux, FreeBSD and Android
+define Package/tvheadend43/description
+  Tvheadend 4.3 is a TV streaming server and recorder for Linux, FreeBSD and Android
   supporting DVB-S, DVB-S2, DVB-C, DVB-T, ATSC, IPTV, SAT>IP and HDHomeRun as input sources.
 
   Tvheadend offers the HTTP (VLC, MPlayer), HTSP (Kodi, Movian) and SAT>IP streaming.
 endef
 
-define Package/tvheadend/config
+define Package/tvheadend43/config
   menu "Configuration"
-  depends on PACKAGE_tvheadend
+  depends on PACKAGE_tvheadend43
   source "$(SOURCE)/Config.in"
   endmenu
 endef
@@ -84,11 +84,11 @@ define Build/Prepare
 		> $(PKG_BUILD_DIR)/debian/changelog
 endef
 
-define Package/tvheadend/conffiles
+define Package/tvheadend43/conffiles
 /etc/config/tvheadend
 endef
 
-define Package/tvheadend/install
+define Package/tvheadend43/install
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/tvheadend.init $(1)/etc/init.d/tvheadend
 	$(INSTALL_DIR) $(1)/etc/config
@@ -98,4 +98,4 @@ define Package/tvheadend/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/build.linux/tvheadend $(1)/usr/bin/
 endef
 
-$(eval $(call BuildPackage,tvheadend))
+$(eval $(call BuildPackage,tvheadend43))
